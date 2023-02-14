@@ -42,14 +42,15 @@ class SingleMinMax(quarto.Player):
             print(f"RANDOM PLAY CH or WE LOST {no_safe_pieces}", candidate_piece)
             return candidate_piece
 
-        # It's the end of y turn, so:
-        if self.move is not None:   #if there is a move loaded
-            tmp_move = self.move       #save it
-            self.move = None            #Delete the move
+        # It's the end of my turn, so:
+        if self.move is not None:      # if there is a move loaded
+            tmp_move = self.move       # save it
+            self.move = None           # Delete the move
             print("Let chose: ", tmp_move[1], possible_pieces)  
 
             #TODO: Check if the move is a sure win for the opp
             # in that case try -> Avoid_easy_defeat
+            # Isn't it spoiling the minmax approach?
             
             return tmp_move[1]  #return the move
     
