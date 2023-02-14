@@ -93,13 +93,6 @@ def cook_status(board = None,
 
     return cooked
 
-def evaluation():
-    pass
-
-def is_equivalent_to(state) -> int :
-    pass
-
-
 def check_list(l: list) -> int:
     """
     check if the given list is full and if it contains 
@@ -134,7 +127,6 @@ def check_list(l: list) -> int:
         if not no_bit_shared:   # if there exist a column with all 1 or 0
             return True
  
-
 def is_quarto(board: np.ndarray):
     """Using XOR and check if the Xor is greater than 1 to see if 
 
@@ -238,104 +230,20 @@ def avoid_easy_defeat(board, possible_pieces) -> tuple:
     # If there is no safe piece, we play the last
     return (random.choice(possible_pieces), True)
 
-class dictBufferPlace(object):
-    """
-    The class represent the memory Buffer
-    """
-    def __init__(self, buffer_size, name_buffer=''):
-        self.buffer_size=buffer_size  #choose buffer size
-        self.num_exp=0
-        self.buffer=deque()
-        self.g = {}
-
-    def add(self, s, a, r, t, s2):
-        experience=(s, a, r, t, s2)
-        if self.num_exp < self.buffer_size:
-            self.buffer.append(experience)
-            self.num_exp +=1
-        else:
-            self.buffer.popleft()
-            self.buffer.append(experience)
-
-    def size(self):
-        return self.buffer_size
-
-    def count(self):
-        return self.num_exp
-
-    def sample(self, batch_size):
-        if self.num_exp < batch_size:
-            batch=random.sample(self.buffer, self.num_exp)
-            self.num_exp -= self.num_exp
-        else:
-            batch=random.sample(self.buffer, batch_size)
-            self.num_exp -= batch_size
-
-        s, a, r, t, s2 = map(np.stack, zip(*batch))
-
-        return s, a, r, t, s2
-
-    def clear(self):
-        self.buffer = deque()
-        self.num_exp=0
-
-class dictBufferPiece(object):
-    """
-    The class represent the memory Buffer
-    """
-    def __init__(self, buffer_size, name_buffer=''):
-        self.buffer_size=buffer_size  #choose buffer size
-        self.num_exp=0
-        self.buffer=deque()
-        self.g_piece= {}
-
-    def add(self, s, piece):
-        # TODO: 
-        if self.num_exp < self.buffer_size:
-            self.buffer.append((s,piece))
-           
-            self.num_exp +=1
-        else:
-            self.buffer.popleft()
-            self.buffer.append()
-
-    def size(self):
-        return self.buffer_size
-
-    def count(self):
-        return self.num_exp
-
-    def sample(self, batch_size):
-        if self.num_exp < batch_size:
-            batch=random.sample(self.buffer, self.num_exp)
-            self.num_exp -= self.num_exp
-        else:
-            batch=random.sample(self.buffer, batch_size)
-            self.num_exp -= batch_size
-
-        s, a, r, t, s2 = map(np.stack, zip(*batch))
-
-        return s, a, r, t, s2
-
-    def clear(self):
-        self.buffer = deque()
-        self.num_exp=0
-
 def get_num_similarities(p1, p2) -> int:
     ...
 
 def get_simm_equivalence(board) -> tuple:
 
-    """due stati sono equivalenti se hanno:
-    -stesso numero di pezzi
-    -nelle stesse posizioni
-    -e il numero di attributi comuni tra ogni coppia 
-        di pezzi su riga,colonna,diag e anti diag è lo stesso
+    """two state equivalent if both of them had in order:
+   - The same number of pieces
+   - The pieces configuration which differs only for rotation and/or flips
+   - The same graph of similarities of the pieces
     
+   #Draft of PseudoCode ... 
     1) Check b1.num_pezzi = b_ref[i].num_pezzi for ogni b_ref che abbiamo
         pezzi della board in analisi usati come indice per cercare nella lista di 
         b_ref con quel numero di pezzi
-
 
         N = b1.num_pezzi
         list_b_ref_with_N_pieces = simm[N] (un dict)
@@ -355,4 +263,3 @@ def get_simm_equivalence(board) -> tuple:
             return NON-EQUIVALENTI
 
     """      
-    #return (reference_board, trasf)
