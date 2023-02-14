@@ -10,7 +10,7 @@ brief intro, rule etc
 
 ## Getting Informed
 
-I studied the maths behind Quarto, in order to understand its true complexity and how exploits som sort of symmetries etc. A crucial site was [this page] () where I truly understand how many states could exist in end game (~21 10e12). In Materials there are other links I used to analyze the problem
+I studied the maths behind Quarto, in order to understand its true complexity and how exploits som sort of symmetries etc. A crucial site was [this page](https://stmorse.github.io/journal/quarto-part1.html) where I truly understand how many states could exist in end game (~21 10e12). In Materials there are other links I used to analyze the problem
 
 ## The Journey
 
