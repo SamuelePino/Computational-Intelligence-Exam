@@ -14,7 +14,7 @@ I studied the maths behind Quarto, in order to understand its true complexity an
 
 ## The Journey
 
-Given this complexity and my computational constraints I discussed with my colleague about the best approach. He decided to use Reinforcement Learning, whilst I focused on MinMax.
+Given this complexity and my computational constraints I discussed with my colleague [Marco Pratticò s294815](https://github.com/marcopra) about the best approach. He decided to use Reinforcement Learning, while I focused on MinMax.
 
 The RL approach turned out to be unfeasible considering our resources, due to the gargantuan dictionaries needed for the state-value tables, and the huge number of collisions which derive from such enormous tables. 
 
