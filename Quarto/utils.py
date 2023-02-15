@@ -13,19 +13,10 @@ def cook_status(board = None,
                 my_test = False,
                 shuffle = False) -> dict:
 
-    # TODO: Importante: Fare il copy della board!!! x
-    # assert choosing == True or (choosing == False and selected_piece != None and board != None), \
-    # f"If the Agent role is to position a piece, the actual board and the \
-    # chosen piece must be specified inside the '__cook_status' function"
+    
 
     cooked = dict()
     
-    # Role: Choosing a Piece
-    # TODO: CHeck se funge + Check 
-    # for i in range(16): 
-    #   if i not in board:
-    #       poss_pieces.append(i) 
-
     if choosing:
         pieces = [i for i in range(0, 15 + 1)]
         for i in range(4):
@@ -81,11 +72,6 @@ def cook_status(board = None,
             # and what piece is it (piece)
             # contains all possible placing for it
             cooked['legal_moves'] = [(y,x) for y in range(4) for x in range(4) if board[y][x] < 0]
-            # for y in range(4):
-            #     for x in range(4):
-            #         if board[y][x] < 0:
-            #             # y,x or  x,y ??? DONT TACCC
-            #             cooked['legal_moves'].append((y,x)) # before (x,y, piece)
 
             if shuffle:
                 random.shuffle(cooked['legal_moves'])
@@ -110,10 +96,6 @@ def check_list(l: list) -> int:
     for elem in l:
         if elem < 0:
             return False
-
-    # for elem in l:
-    #     elem_bits = '{:04b}'.format(elem)
-    #     bits_matrix.append(elem_bits)
 
     bits_matrix = ['{:04b}'.format(elem) for elem in l]
 
@@ -184,7 +166,7 @@ def try_easy_win(possible_new_states) -> tuple:
     """
     for board_state, move in possible_new_states:
         if is_quarto(board_state):
-            return  ((move[0],move[1]), True)  # y,x for bug(?) in the quarto class (?)
+            return  ((move[0],move[1]), True)  
 
     else:
         return ((move[0],move[1]), False)   # Use the last available move checked

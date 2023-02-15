@@ -7,17 +7,15 @@ import random
 import quarto
 
 from DoubleMinMax import DoubleMinMax
-from SingleMinMax import SingleMinMax
+from delivered_player.SingleMinMax import SingleMinMax
 from players.HardCodedPlayer import HardCodedPlayer
 
-# TODO @marcopra check if is ok a structure like this
 from players.RandomPlayer import RandomPlayer
-# from RLPlayer import RLPlayer @samuelepino
 
 
 def main():
     game = quarto.Quarto()
-    game.set_players((DoubleMinMax(game), HardCodedPlayer(game)))
+    game.set_players((SingleMinMax(game), HardCodedPlayer(game)))
     winner = game.run()
     logging.warning(f"main: Winner: player {winner}")
 """

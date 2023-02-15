@@ -3,7 +3,7 @@ import random
 import quarto
 from utils import cook_status
 from utils import try_easy_win, avoid_easy_defeat
-from single_minmax import MinMaxNode, minimax
+from delivered_player.single_minmax import MinMaxNode, minimax
 
 from tqdm import tqdm 
 
@@ -79,8 +79,8 @@ class SingleMinMax(quarto.Player):
         if self._play_random:
             self._turns_played_rnd += 1
             print(f"RANDOM PLAY PL or IS_WINNING {is_winning}", candidate_move, piece_to_place)
-            return candidate_move # (y,x) ??
-        #print(possible_new_states)
+            return candidate_move 
+        
         self.search_move(board, piece_to_place)
         
         print("Lets place: ", piece_to_place, "in",  self.move[0])

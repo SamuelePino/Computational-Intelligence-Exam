@@ -70,7 +70,7 @@ class DoubleMinMax(quarto.Player):
         if is_winning or self._play_random:
             self._turns_played_rnd += 1
             print("RANDOM PLAY PL", candidate_move)
-            return candidate_move # (y,x) ??
+            return candidate_move
         
         # Else MinMax
         for state, move in possible_new_states:
